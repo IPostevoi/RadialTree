@@ -10,6 +10,8 @@ import matplotlib.pyplot as plt
 
 app = dash.Dash()
 
+sample='Iterable,Traversable\nTraversable,Seq\nTraversable,Map\nTraversable,Tree\nTraversable,Iterator\nSeq,IndexedSeq\nSeq,LinearSeq\nIndexedSeq,Array\nIndexedSeq,CharSeq\nIndexedSeq,Vector\nLinearSeq,Stack\nLinearSeq,List\nLinearSeq,Stream\nLinearSeq,Queue\nSet,LinkedHashSet\nSet,HashSet\nSet,SortedSet\nSortedSet,TreeSet\nMap,LinkedHashMap\nMap,HashMap\nMap,SortedMap\nSortedMap,TreeMap'
+
 app.layout = html.Div(children=[
     html.H1(children=u'Draw your radial tree'),
     html.P(children='Insert your tree (make sure of the indexes uniqueness)'),
@@ -17,7 +19,7 @@ app.layout = html.Div(children=[
     dcc.Textarea(
         id='input',
         placeholder='Insert your tree here',
-        value='0,1\n0,2\n0,3\n1,4\n1,5\n4,6',
+        value=sample,
         style={'width': '100%'}
     ),
     html.Button('Go', id='button_id'),
@@ -58,11 +60,17 @@ def plot_tree(G, arr):
         y = [i[1] for i in edge]
         for i in range(0, len(edge)):
             plt.plot(x[i: i+2], y[i: i+2], c='black', linestyle='-', marker='o', linewidth=0.5, markersize=3)
+
+    max = 0
     eps = 0.05
     for i in G:
         plt.annotate(i[3], (i[0]+eps, i[1]+eps))
+        if max < (i[0]**2 + i[1]**2)**0.5:
+            max = (i[0]**2 + i[1]**2)**0.5
 
-    for i in range(len(edges.items())+1):
+
+
+    for i in range(int(max)+1):
         plt.plot(i*np.cos(phi), i*np.sin(phi), c='grey', linewidth=0.3)
     plt.axis('off')
     plt.savefig("fig")
