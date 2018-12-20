@@ -41,7 +41,7 @@ class Node():
 
 
 
-def radial_position(T, v, a, b, G):
+def radial_position(v, a, b, dens, G):
     D = v.depth
     if D == 0:
         G.append((0, 0, v.index, v.data))
@@ -50,10 +50,10 @@ def radial_position(T, v, a, b, G):
     k = v.leaves
     for c in v.children:
         l = c.leaves
-        mu = theta + (l / float(k) * (b - a))
+        mu = theta + min((l / float(k) * (b - a)), dens)
         G.append((R_D * np.cos((theta + mu) / 2), R_D * np.sin((theta + mu) / 2), c.index, c.data))
         if len(c.children) > 0:
-            radial_position(T, c, theta, mu, G)
+            radial_position(c, theta, mu, dens, G)
 
         theta = mu
     return G
@@ -61,7 +61,9 @@ def radial_position(T, v, a, b, G):
 
 R_0 = 1
 zeta = 1
-def get_radial_tree(root, a, b):
+
+
+def get_radial_tree(root, a, b, dens):
 # root = Node(0)
 # p = Node(1)
 # q = Node(2)
@@ -80,7 +82,7 @@ def get_radial_tree(root, a, b):
 #     a = 0
 #     b = 2 * np.p
     G = []
-    radial_position(None, root, a, b, G)
+    radial_position(root, a, b, dens, G)
     return G
 
 
