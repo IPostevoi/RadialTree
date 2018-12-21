@@ -64,23 +64,6 @@ zeta = 1
 
 
 def get_radial_tree(root, a, b, dens):
-# root = Node(0)
-# p = Node(1)
-# q = Node(2)
-# r = Node(3)
-# qq = Node(4)
-# zz = Node(5)
-# zzz = Node(6)
-# zzzz = Node(7)
-#
-# p.add_child(qq)
-# p.add_child(qq)
-# p.add_child(qq)
-# qq.add_child(zzzz)
-# qq.add_child(zzz)
-# zzzz.add_child(q)
-#     a = 0
-#     b = 2 * np.p
     G = []
     radial_position(root, a, b, dens, G)
     return G
