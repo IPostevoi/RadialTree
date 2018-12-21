@@ -56,4 +56,3 @@ waitress==1.1.0
 wcwidth==0.1.7
 Werkzeug==0.14.1
 wrapt==1.10.11
-xlwings==0.11.8
