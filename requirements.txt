@@ -46,8 +46,6 @@ PyInstaller==3.4
 pyparsing==2.3.0
 python-dateutil==2.7.3
 pytz==2018.4
-pywin32==223
-pywin32-ctypes==0.2.0
 requests==2.19.1
 requests-file==1.4.3
 requests-ftp==0.3.1
