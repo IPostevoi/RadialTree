@@ -8,6 +8,8 @@ Available for changes: tree size, tree density; to save the tree, you must speci
 1. Start server.py in console
 2. Open 127.0.0.1:8080 in browser
 
+## Appearance
+
 ![txt](pics/All.PNG)
 
 Appearance of application.
