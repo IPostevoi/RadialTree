@@ -26,7 +26,7 @@ v2,v5
 
 ....
 
-Push button Go to update the plot.
+Push the button "Go" to update the plot.
 
 ![txt](pics/Sliders.PNG)
 
@@ -34,8 +34,8 @@ Sliders allow to adjust size and density of the tree.
 
 ![txt](pics/Undo.PNG)
 
-Undo element revert changes.
+Undo element to revert changes.
 
 ![txt](pics/Save.PNG)
 
-It's possible to save the tree using Save graph button. 
+It's possible to save the tree using "Save graph" button. 
