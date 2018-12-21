@@ -9,12 +9,13 @@ import base64
 import matplotlib.pyplot as plt
 
 app = dash.Dash()
+server = app.server
 
 sample = 'Iterable,Traversable\nTraversable,Seq\nTraversable,Map\nTraversable,Tree\nTraversable,Iterator\nSeq,IndexedSeq\nSeq,LinearSeq\nIndexedSeq,Array\nIndexedSeq,CharSeq\nIndexedSeq,Vector\nLinearSeq,Stack\nLinearSeq,List\nLinearSeq,Stream\nLinearSeq,Queue\nSet,LinkedHashSet\nSet,HashSet\nSet,SortedSet\nSortedSet,TreeSet\nMap,LinkedHashMap\nMap,HashMap\nMap,SortedMap\nSortedMap,TreeMap'
 
 app.layout = html.Div(children=[
     html.H1(children=u'Draw your radial tree'),
-    html.P(children='Insert your tree using notation v1,v2 (make sure of the uniqueness of names), see example of some Java classes hierarchy'),
+    html.P(children='Insert your tree using notation v1,v2 without spaces (make sure of the uniqueness of names), see example of some Java classes hierarchy'),
     # dcc.Input(id='input', type='text'),
     dcc.Textarea(
         id='input',
