@@ -6,6 +6,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import numpy as np
 import base64
+import shutil
 import matplotlib.pyplot as plt
 
 app = dash.Dash()
@@ -41,6 +42,10 @@ app.layout = html.Div(children=[
         value=3,
     ),
     html.P(id='output'),
+    html.P(children='Insert path'),
+    html.Div(dcc.Input(id='input_box', type='text')),
+    html.Button('Save graph', id='button_save'),
+    html.P(id='output_save'),
 
     # dcc.Graph(
     #     id='example-graph',
@@ -88,7 +93,7 @@ def plot_tree(G, arr, size):
     for i in range(int(max + 1)):
         plt.plot(i * np.cos(phi), i * np.sin(phi), c='grey', linewidth=0.3)
     plt.axis('off')
-    plt.savefig("fig")
+    plt.savefig("tree")
 
 
 @app.callback(
@@ -104,8 +109,22 @@ def on_button(n_clicks, value1, value2, input_data):
         root, arr = radial.create_tree(input_data)
         G = radial.get_radial_tree(root, a, b, dens)
         plot_tree(G, arr, value1)
-        encoded_image = base64.b64encode(open("fig.png", 'rb').read())
+        encoded_image = base64.b64encode(open("tree.png", 'rb').read())
         return html.Img(id='img', src='data:image/png;base64,{}'.format(encoded_image.decode()))
 
+
+@app.callback(
+    Output(component_id='output_save', component_property='children'),
+    [Input(component_id='button_save', component_property='n_clicks')],
+    state=[State(component_id='input_box', component_property='value')]
+)
+def on_save(n_clicks, input_data):
+    if not input_data is "" and not input_data is None:
+        src = 'tree.png'
+        shutil.copy(src, input_data)
+        return "Successfully saved!"
+    else:
+        return ""
+
 if __name__ == '__main__':
-    app.run_server(debug=False, port=8080)
+    app.run_server(debug=True, port=8080)
